@@ -1,3 +1,22 @@
 ---
 # Store all cache information in /var/cache
 cachedir: '/var/cache/r10k'
+
+# The 'sources' setting determines what repositories r10k will use when creating
+# Puppet environments.
+sources:
+  # Each source should have a unique name, and preferrably should only use
+  # alphanumeric characters and underscores.
+  operations:
+    # The 'remote' setting determines the location of the VCS repository used
+    # for creating environments.
+    remote: 'https://github.com/ncorrare/control-repo-2019.git'
+
+    # The 'basedir' setting specifies where environments will be created for
+    # this source. This setting should match the Puppet 'environmentpath'
+    # setting in puppet.conf.
+    #
+    # See http://docs.puppetlabs.com/references/latest/configuration.html#environmentpath
+    # for more information about the Puppet 'environmentpath' setting.
+    basedir: '/etc/puppet/code/environments'
+
