@@ -1,0 +1,3 @@
+---
+# Store all cache information in /var/cache
+cachedir: '/var/cache/r10k'
