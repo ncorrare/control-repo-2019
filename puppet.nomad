@@ -23,15 +23,6 @@ job "puppet" {
       }
       template {
         data = <<EOF
-        {{ with secret "pki-intermediate/crl/pem"}}
-        {{ .Data }}{{ end }}
-        EOF
-        destination   = "/etc/puppet/ssl/crl.pem"
-        change_mode   = "signal"
-        change_signal = "SIGHUP"
-      }
-      template {
-        data = <<EOF
         {{ with secret "pki-intermediate/issue/puppet-server" "common_name=puppet.stn.corrarello.net"}}
         {{ .Data.ca_chain }}{{ end }}
         EOF

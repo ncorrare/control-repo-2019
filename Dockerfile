@@ -1,5 +1,5 @@
 FROM debian:stable
-COPY qemu-arm-static /usr/bin
+#COPY qemu-arm-static /usr/bin
 
 RUN apt-get update -qq && apt-get install puppet-master r10k curl -qq
 COPY Puppetfile /etc/puppet/
@@ -13,5 +13,6 @@ RUN puppet config set hostcert --section master /etc/puppet/ssl/server-cert.pem
 RUN puppet config set localcacert --section master /etc/puppet/ssl/ca.pem
 RUN puppet config set hostprivkey --section master /etc/puppet/ssl/server-key.pem
 RUN puppet config set hostcrl --section master /etc/puppet/ssl/crl.pem
-RUN curl -k https://vault.stn.corrarello.net/v1/pki/crl/pem > /etc/puppet/ssl/crl.pem
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 8140
