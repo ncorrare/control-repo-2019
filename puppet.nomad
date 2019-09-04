@@ -50,7 +50,7 @@ job "puppet" {
       }
      driver = "docker"
       config {
-        image = "ncorrare/puppet-master:latest"
+        image = "ncorrare/puppet-master:release-0.2.0"
         command = "puppet"
         args = ["master"]
         port_map {
